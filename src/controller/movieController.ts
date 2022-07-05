@@ -1,5 +1,4 @@
 import { Request, Response} from "express";
-import {Movie} from "../model/movie";
 import {movieDAO} from '../model/movie';
 const movieController = async (req:Request,res:Response)=>{
 
