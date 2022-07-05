@@ -1,8 +1,9 @@
 import Router from 'express';
 import userController from '../controller/userController';
-import encryptPassword from '../middleware/auth';
+import auth from '../middleware/auth';
 const router = Router();
 
-router.post('/user',encryptPassword,userController);
+router.post('/user',auth.encryptPassword,userController);
+
 
 export default router;

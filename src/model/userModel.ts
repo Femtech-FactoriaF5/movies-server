@@ -1,12 +1,25 @@
-import { query } from "express";
 import users from "../data/users";
-import iUser from "./interfaces/iUser";
+import { connection } from "../services/database.service";
+import {iUser,  iUserLogin } from "./interfaces/iUser";
 
 class User {
-    saveUser(user:iUser){
-        users.push(user);
-        // console.log(users);
-        return user;
+    async saveUser(user:iUser){
+        const queryStr = 'INSERT INTO "user"(email,password,name) VALUES($1,$2,$3) RETURNING *'
+        const values = [user.email,user.password,user.name ||null]
+        const client = await connection();
+        const result = await client.query(queryStr, values);
+        return result.rows[0];
+
+
+    }
+
+    async getUser(user:iUserLogin){
+
+        const queryStr = 'SELECT * FROM "user" WHERE email = $1'
+        const values = [user.email]
+        const client = await connection();
+        const result = await client.query(queryStr, values);
+        return result.rows[0];
     }
 
 }
