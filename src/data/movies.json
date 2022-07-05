@@ -1,5 +1,4 @@
-{"movies":[
-    {
+   {
       "id": 1,
       "title": "The Shawshank Redemption",
       "poster": "https://i.imgur.com/SuW2ZlC.jpg",
@@ -17,7 +16,8 @@
         "Clancy Brown",
         "Gil Bellows"
       ]
-    }, {
+    }
+     {
       "id": 2,
       "title": "The Godfather",
       "poster": "https://i.imgur.com/Uzvny9I.jpg",
@@ -35,7 +35,8 @@
         "Robert Duvall",
         "Sterling Hayden"
       ]
-    }, {
+    }
+     {
       "id": 3,
       "title": "The Godfather Part II",
       "poster": "https://i.imgur.com/abJNkWI.jpg",
@@ -53,7 +54,8 @@
         "John Cazale",
         "Talia Shire"
       ]
-    }, {
+    }
+     {
       "id": 4,
       "title": "The Dark Knight",
       "poster": "https://i.imgur.com/3jLPB46.jpg",
@@ -71,7 +73,8 @@
         "Maggie Gyllenhaal",
         "Gary Oldman"
       ]
-    }, {
+    }
+     {
 
       "id": 5,
       "title": "Schindler's List",
@@ -91,4 +94,3 @@
         "Embeth Davidtz"
       ]
     }
-  ]}
