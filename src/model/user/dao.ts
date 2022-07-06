@@ -20,7 +20,7 @@ class UserDAO {
     }
     async getUsers(){
       const collection = await database.getCollection(this.collectionName)
-      const result = await collection.find();
+      const result = await collection.find().toArray();
       return result;
 
     }
