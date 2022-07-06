@@ -37,8 +37,12 @@ const userController = {
 
             res.status(400).send(error.message);
         }
+    },
+    Auth: async (req: Request, res: Response) => {
+        res.json({
+            token: req.user
+        })
     }
 }
-
 
 export default userController;

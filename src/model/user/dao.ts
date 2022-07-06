@@ -12,10 +12,10 @@ class UserDAO {
         const collection = await database.getCollection(this.collectionName)
         return collection.insertOne(user);
     }
-    async getUser(user: User) {
-      console.log(user);
+    async getUser(email: string) {
+
       const collection = await database.getCollection(this.collectionName)
-      const result = await collection.findOne({email:user.email});
+      const result = await collection.findOne({email});
       return result;
     }
     async getUsers(){

@@ -1,5 +1,5 @@
 import * as mongoDB from "mongodb";
-import {config } from './config';
+import {config } from '../config';
 
 
 
@@ -30,4 +30,4 @@ class Database{
     }
 }
 
-export default new Database(config());
+export default new Database(config);

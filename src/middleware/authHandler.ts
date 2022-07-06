@@ -2,13 +2,17 @@ import bcrypt from 'bcrypt';
 import { NextFunction,Request,Response } from 'express';
 import { User, userDAO } from '../model/user/index';
 
+export const hashingPassword = password  => {
+
+    const saltRounds = 10;
+    return bcrypt.hash(password, saltRounds);
+}
 
 const encryptPassword = async (req:Request, res:Response, next:NextFunction) => {
     try {
-        const saltRounds = 10;
 
         if(req.body.password){
-        const passwordHash = await bcrypt.hash(req.body.password, saltRounds);
+        const passwordHash = await hashingPassword(req.body.password);
         req.body.password = passwordHash;
         // console.log(passwordHash);
         next();
@@ -27,7 +31,7 @@ const validateUser =  async (req:Request, res:Response, next:NextFunction) => {
                 if (!email || !password) {
                     res.status(400).send('missing some data');
                 } else {
-                const user:any = await userDAO.getUser(req.body);
+                const user:any = await userDAO.getUser(email);
 
                 const passwordCorrect = await bcrypt.compare(req.body.password, user.password);
 
