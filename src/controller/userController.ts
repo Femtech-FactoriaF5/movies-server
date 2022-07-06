@@ -30,7 +30,7 @@ const userController = {
             const result = await userDAO.getUsers();
 
             result
-                ? res.status(201).json(JSON.stringify(result))
+                ? res.status(201).json(result)
                 : res.status(500).send("Failed to get data.");
 
         } catch (error: any) {
