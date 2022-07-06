@@ -1,8 +1,6 @@
 import bcrypt from 'bcrypt';
 import { NextFunction,Request,Response } from 'express';
 import { User, userDAO } from '../model/user/index';
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import { config } from './../services/config';
 
 
 const encryptPassword = async (req:Request, res:Response, next:NextFunction) => {
@@ -30,7 +28,7 @@ const validateUser =  async (req:Request, res:Response, next:NextFunction) => {
                     res.status(400).send('missing some data');
                 } else {
                 const user:any = await userDAO.getUser(req.body);
-console.log(user.password);
+
                 const passwordCorrect = await bcrypt.compare(req.body.password, user.password);
 
                 passwordCorrect? next(): res.status(400).send('password incorrect')

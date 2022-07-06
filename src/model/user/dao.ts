@@ -13,8 +13,9 @@ class UserDAO {
         return collection.insertOne(user);
     }
     async getUser(user: User) {
+      console.log(user);
       const collection = await database.getCollection(this.collectionName)
-      const result = await collection.findOne(user);
+      const result = await collection.findOne({email:user.email});
       return result;
     }
     async getUsers(){
