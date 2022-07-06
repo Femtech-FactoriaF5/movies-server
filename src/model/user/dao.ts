@@ -12,6 +12,18 @@ class UserDAO {
         const collection = await database.getCollection(this.collectionName)
         return collection.insertOne(user);
     }
+    async getUser(user: User) {
+      const collection = await database.getCollection(this.collectionName)
+      const result = await collection.findOne(user);
+      return result;
+    }
+    async getUsers(){
+      const collection = await database.getCollection(this.collectionName)
+      const result = await collection.find();
+      return result;
+
+    }
+
 }
 
 export default new UserDAO('users');
