@@ -14,11 +14,9 @@ router.post('/user/login',auth.validateUser,userController.login);
 router.get('/user/google', passport.authenticate("google", {
     scope: ["profile", "email"]
   }));
+
 router.get('/auth/google', passport.authenticate("google", {
     session:false}), userController.Auth);
-
-// router.get('/user/google/callback', passport.authenticate("google", {
-//     session:false}), userController.Auth);
 router.get('/user/all',jwt.validateToken,userController.getAllUsers);
 
 export default router;

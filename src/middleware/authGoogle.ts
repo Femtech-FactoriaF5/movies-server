@@ -4,6 +4,9 @@ import userDAO from "../model/user/dao"
 import { googleConfig } from "../config";
 import { User } from "../model/user";
 // Google Plus Strategy
+
+//VERSIÓN PARA TRABAJAR CON UN TOKEN GENERADO POR EL CLIENTE
+
 const { clientID, clientSecret } = googleConfig; // Your client secret
 
 const googleStrategy = new GooglePlusTokenStrategy(
