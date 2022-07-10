@@ -1,22 +1,19 @@
 import Router from 'express';
-import userController from '../controller/userController';
-import auth from '../middleware/authHandler';
+import {userController} from '../controller/userController';
+import auth from '../middleware/authentication/authHandler';
 import jwt from '../middleware/jwtHandler';
-import passport from 'passport';
 
+const {saveUser,getAllUsers} = userController;
+const {encryptPassword} = auth;
+const {validateToken} = jwt;
 
 // ROUTES
 const router = Router();
-router.use(passport.initialize());
 
-router.post('/user',auth.encryptPassword,userController.saveUser);
-router.post('/user/login',auth.validateUser,userController.login);
-router.get('/user/google', passport.authenticate("google", {
-    scope: ["profile", "email"]
-  }));
+router.route('/user')
+        .post(encryptPassword,saveUser)
+        .get (validateToken,getAllUsers);
 
-router.get('/auth/google', passport.authenticate("google", {
-    session:false}), userController.Auth);
-router.get('/user/all',jwt.validateToken,userController.getAllUsers);
+
 
 export default router;

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { config } from '../config';
+import {secret}  from '../../config';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const generateToken = (payload: JwtPayload) => {
-    return jwt.sign(payload, config.secret)
+    return jwt.sign(payload, secret)
 }
 
 const getTokenFrom = (request: Request) => {
@@ -18,7 +18,7 @@ const getTokenFrom = (request: Request) => {
     }
 }
 
-const tokenVerify = (token: string) => jwt.verify(token, config.secret);
+const tokenVerify = (token: string) => jwt.verify(token, secret);
 
 
 const validateToken = (req: Request, res: Response, next: NextFunction) => {

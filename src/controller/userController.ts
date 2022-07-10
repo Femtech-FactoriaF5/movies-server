@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { userDAO, User } from '../model/user';
-import jwt from '../middleware/jwtHandler';
+import jwt from '../middleware/authentication/jwtHandler';
 
-const userController = {
+export const userController = {
     saveUser: async (req: Request, res: Response) => {
 
         try {
@@ -22,7 +22,10 @@ const userController = {
         }
     },
     login: async (req: Request, res: Response) => {
-        res.send(jwt.generateToken(req.body.email));
+        const token:any = await jwt.generateToken(req.body.email)
+        console.log(token);
+
+        res.json({token});
 
     },
     getAllUsers: async (req: Request, res: Response) => {
@@ -45,4 +48,3 @@ const userController = {
     }
 }
 
-export default userController;

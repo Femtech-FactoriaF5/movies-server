@@ -1,27 +1,12 @@
-import { config as dotenvConfig } from 'dotenv';
+import { config } from 'dotenv';
 
-dotenvConfig();
+config();
 
-const {
-    DB_CONN_STRING,
-    DB_NAME,
-    SECRET,
-    GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET
-} = process.env;
 
-export const PORT = process.env.PORT;
-export const config = {
-    uri: DB_CONN_STRING || "mongodb://localhost:27017",
-    db: DB_NAME || "movies",
-    secret: SECRET || ""
-}
-
-export const googleConfig = {
-    clientID: GOOGLE_CLIENT_ID || '',
-    clientSecret: GOOGLE_CLIENT_SECRET || '',
-    callbackURL: `http://localhost:3001/auth/google`,
-    // passReqToCallback: true
-}
+export const PORT = process.env.PORT ||3001;
+export const uri = process.env.DB_CONN_STRING || 'http://localhost:27017';
+export const db = process.env.DB_NAME || 'movies';
+export const secret = process.env.SECRET || '';
+export const audience = process.env.GOOGLE_CLIENT_ID || '';
 
 

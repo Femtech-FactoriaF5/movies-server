@@ -1,19 +1,22 @@
 import express from 'express';
-import passport from 'passport';
 import cors from 'cors';
-import session from 'express-session';
-import {movieRoute, userRoute} from './route';
-import { initGooglePassport } from './services/google.strategy';
+import {errorRoute, movieRoute, userRoute,authRoute} from './route';
+import handleError from './middleware/handleError';
+
 const app = express();
+
 app.use(cors())
 app.use(express.json());
-// app.use(session({secret:'misecreto'}));
+
 app.use(movieRoute);
 app.use(userRoute);
+app.use(authRoute);
+app.use('*', errorRoute);
 
-app.use(passport.initialize());
-//  app.use(passport.session());
-initGooglePassport(passport);
+app.use(handleError.logError);
+app.use(handleError.clientError);
+app.use(handleError.genericError);
+
 
 
 

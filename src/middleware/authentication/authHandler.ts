@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { NextFunction,Request,Response } from 'express';
-import { User, userDAO } from '../model/user/index';
+import { User, userDAO } from '../../model/user/index';
 
 export const hashingPassword = (password:string)  => {
 

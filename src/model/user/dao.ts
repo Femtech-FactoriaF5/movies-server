@@ -2,6 +2,8 @@
 import database from '../../services/database.service';
 import User from "./model";
 
+type UserPromise = Promise<User | null>;
+
 class UserDAO {
    collectionName:string;
    constructor(collectionName:string){
@@ -10,12 +12,13 @@ class UserDAO {
 
    async saveUser(user:User){
         const collection = await database.getCollection(this.collectionName)
-        return collection.insertOne(user);
+        const result = await collection.insertOne(user);
+        return result;
     }
-    async getUser(email: string) {
+    async getUser(email: string):UserPromise {
 
       const collection = await database.getCollection(this.collectionName)
-      const result = await collection.findOne({email});
+      const result = await collection.findOne({email}) as User | null;
       return result;
     }
     async getUsers(){
