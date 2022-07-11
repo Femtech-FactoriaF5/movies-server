@@ -1,4 +1,4 @@
-import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import HTTPErrors from 'http-errors';
 import { MongoError } from 'mongodb';
 
