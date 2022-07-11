@@ -44,14 +44,8 @@ export const getAccessFromGoogle = async (req: Request, res: Response, next: Nex
         }
 
     } catch (error: any) {
-        res.json(error.message);
+
+        next(error);
+        // res.json(error.message);
     }
 }
-
-//     loginMiddleware: passport.authenticate('google', {
-//                 scope: ['email','profile'],
-//                 session: false,
-//             })
-
-
-// }

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import {secret}  from '../../config';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-
+import HTTPError from 'http-errors';
 const generateToken = (payload: JwtPayload) => {
     return jwt.sign(payload, secret)
 }
@@ -32,7 +32,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
             next();
         }
          else {
-            throw new Error('token invalid or missing')
+            next(HTTPError(401,{error: 'token invalid or missed'}))
 
         }
     } catch (error:any) {

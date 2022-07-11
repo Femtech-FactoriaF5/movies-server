@@ -1,7 +1,8 @@
-import { Request, Response} from "express";
+import { NextFunction, Request, Response} from "express";
 import {Movie} from "../model/movie";
 import {movieDAO} from '../model/movie';
-const movieController = async (req:Request,res:Response)=>{
+
+const movieController = async (req:Request,res:Response, next:NextFunction)=>{
 
 
     try {
@@ -13,7 +14,8 @@ const movieController = async (req:Request,res:Response)=>{
 
     } catch (error: any) {
 
-        res.status(400).send(error.message);
+        next(error);
+        // res.status(400).send(error.message);
     }
 }
 

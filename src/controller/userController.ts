@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { userDAO, User } from '../model/user';
 import jwt from '../middleware/authentication/jwtHandler';
 
@@ -28,7 +28,7 @@ export const userController = {
         res.json({token});
 
     },
-    getAllUsers: async (req: Request, res: Response) => {
+    getAllUsers: async (req: Request, res: Response, next:NextFunction) => {
         try {
             const result = await userDAO.getUsers();
 
@@ -38,7 +38,8 @@ export const userController = {
 
         } catch (error: any) {
 
-            res.status(400).send(error.message);
+            next(error);
+            // res.status(400).send(error.message);
         }
     },
     Auth: async (req: Request, res: Response) => {
